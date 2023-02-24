@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  db:
+    command: >
+      -c ssl=on
+      -c ssl_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem
+      -c ssl_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
+    container_name: db_joce_app
+    image: postgres:11.15
+    ports:
+      - $DB_PORT:$DB_PORT
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - .postgres_data:/var/lib/postgresql/data
+  app:
+    container_name: joce_app
+    build:
+      context: .
+      dockerfile: docker/localdev.Dockerfile
+    command: tail -f /dev/null
+    depends_on:
+      - db
+    volumes:
+      - ./src:/app/src
