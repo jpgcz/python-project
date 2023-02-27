@@ -1,5 +1,8 @@
 from unittest import TestCase
 
-class TestGeneralCases(TestCase):
-    def test_sample_test(self):
-        self.assertTrue(False)
+from domain import get_hi_for_users
+
+class TestDomain(TestCase):
+    def test_get_hi_for_users(self):
+        result = get_hi_for_users(None)
+        self.assertEqual(result, None)
