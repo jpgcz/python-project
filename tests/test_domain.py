@@ -1,4 +1,5 @@
 from unittest import TestCase
+import pytest
 
 from src.domain import get_hi_for_users
 from src.models.user import User
@@ -44,3 +45,11 @@ class TestDomain(TestCase):
 
         # checar de lo esperado
         self.assertEqual(result, ['hi gml', 'hi joce', 'hi jpg'])
+
+    def test_get_hi_for_users_users_no_list_raise_exception(self):
+        # Preparar tu test
+        users = None
+
+        # llamada de interes
+        with pytest.raises(ValueError):
+            get_hi_for_users(users)
