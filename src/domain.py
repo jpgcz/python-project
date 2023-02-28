@@ -6,7 +6,21 @@ users: List users. per each user, concat a hi
 return ["{saludo} user.name", ]
 users is empty or args empty -> []
 """
-def get_hi_for_users(users, *args):
+
+from src.models.user import User
+
+
+def get_hi_for_users(users: list, *args):
+    """ Greetings to all users that are in the list
+    users (List)
+    *args
+
+    Returns: a List
     """
-    """
-    pass
+    greetings = []
+
+    if bool(users):
+        for user in users:
+            greetings.append(f"{args[0]} {user.name}")
+
+    return greetings
