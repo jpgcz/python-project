@@ -13,7 +13,7 @@ class TestDomain(TestCase):
         result = get_hi_for_users(users, "hi", "Hola")
 
         # checar de lo esperado
-        self.assertEqual(result, ['hi', users[0].name])
+        self.assertEqual(result, ['hi gml'])
 
     def test_get_hi_for_users_without_users(self):
         # Preparar tu test
@@ -33,6 +33,14 @@ class TestDomain(TestCase):
         result = get_hi_for_users(users, "hi")
 
         # checar de lo esperado
-        self.assertEqual(result, ['hi', users[0].name])
-        self.assertEqual(result, ['hi', users[1].name])
-        self.assertEqual(result, ['hi', users[2].name])
+        self.assertEqual(result, ['hi gml', 'hi joce', 'hi jpg'])
+
+    def test_get_hi_for_users_no_his(self):
+        # Preparar tu test
+        users = [User('gml', 27, True), User('joce', 26, True), User('jpg', 28, True)]
+
+        # llamada de interes
+        result = get_hi_for_users(users)
+
+        # checar de lo esperado
+        self.assertEqual(result, ['hi gml', 'hi joce', 'hi jpg'])
