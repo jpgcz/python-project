@@ -26,6 +26,9 @@ def get_hi_for_users(users, *args):
 
     Returns: a List
     """
+    if not isinstance(users, list):
+        raise ValueError("users must be a list")
+
     his = args or ("hi",)
     greetings = ["{hi} {name}".format(hi=his[0], name=user.name) for user in users]
 
