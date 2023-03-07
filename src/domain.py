@@ -12,7 +12,7 @@ from src.models.user import User
 """
 py3.10: get_hi_for_users(users: list[str], *args: tuple[str]) -> list[str]:
 py3.7: get_hi_for_users(users: List[str], *args):
-p2.7:
+py2.7:
     :param n datatype:
     :param nom:
     :type: list[str3]
