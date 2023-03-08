@@ -1,3 +1,7 @@
+from pony.orm import Required, PrimaryKey
+
+from db import app_db
+
 class User:
     """Represents a User.
 
@@ -11,3 +15,10 @@ class User:
         self.age = age
         self.is_active = is_active
 
+
+class UserEntity(app_db.Entity):
+    _table_ = "user"
+    user_id = PrimaryKey(int, auto=True)
+    name = Required(str, unique=True)
+    age = Required(int)
+    is_active = Required(bool)

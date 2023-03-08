@@ -1,2 +1,4 @@
 pip-tools
 pytest
+pony==0.7.12
+psycopg2-binary

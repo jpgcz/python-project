@@ -4,7 +4,7 @@ RUN python -m virtualenv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
 COPY ./requirements/dev.txt requirements.txt
-RUN pip install -U pip
+RUN pip install -U pip --no-cache-dir
 RUN pip install -r requirements.txt
 
 FROM python:2.7.18-buster as base

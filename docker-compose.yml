@@ -16,6 +16,8 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - .postgres_data:/var/lib/postgresql/data
+      - ./db_init/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+
   app:
     container_name: joce_app
     build:
@@ -24,6 +26,12 @@ services:
     command: tail -f /dev/null
     depends_on:
       - db
+    environment:
+      DB_HOST: db
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_PORT: ${DB_PORT}
     volumes:
       - ./src:/app/src
       - ./tests:/app/tests
